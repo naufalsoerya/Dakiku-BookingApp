@@ -10,6 +10,12 @@ router.use(authRoutes)
 // CRUD Mountain
 router.get('/mountain', authentication, Controller.getMountain)
 router.get('/mountain/:id', authentication, Controller.getMountainById)
-router.patch('/mountain/:id', authentication, authorization, Controller)
+// router.patch('/mountain/:id', authentication, authorization, Controller)
+
+// CRUD Booking
+router.get('/booking', authentication, Controller.getBooking)
+router.post('/booking/:id', authentication, Controller.postBooking)
+router.put('/booking/:id', authentication, authorization, Controller.putBooking)
+router.delete('/booking/:id', authentication, authorization, Controller.deleteBooking)
 
 module.exports = router

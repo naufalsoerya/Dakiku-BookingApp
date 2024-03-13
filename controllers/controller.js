@@ -64,7 +64,6 @@ class Controller {
       next(error);
     }
   }
-
   static async getMountainById(req, res, next) {
     try {
       const { id } = req.params;
@@ -76,6 +75,72 @@ class Controller {
       next(error);
     }
   }
+
+  // Controller booking
+  static async getBooking(req, res, next) {
+    try {
+      const booking = await Mountain.findAll({
+        include: [
+          {
+            model: Booking,
+          },
+        ],
+      });
+
+      res.status(200).json(booking);
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async postBooking(req, res, next) {
+    try {
+      const { date, amount, MountainId } = req.body;
+      const UserId = req.user.id;
+      const booking = await Booking.create({
+        date,
+        amount,
+        MountainId,
+        UserId,
+      });
+      if (!booking) throw { name: "NotFound" };
+
+      res.status(201).json(booking);
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async putBooking(req, res, next) {
+    try {
+      const { id } = req.params;
+      const booking = await Booking.findByPk(id);
+
+      if (!booking) throw { name: "NotFound" };
+
+      if (!req.body) {
+        throw { name: "SequelizeValidationError" };
+      }
+
+      await booking.update(req.body);
+
+      res.status(200).json(booking);
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async deleteBooking(req, res, next) {
+    try {
+      const { id } = req.params;
+      const booking = await Booking.findByPk(id);
+      if (!booking) throw { name: "NotFound" };
+
+      await booking.destroy();
+      res.json({ message: `Booking success to deleted` });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  
 }
 
 module.exports = Controller;

@@ -301,10 +301,25 @@ Response: (200 - OK)
 
 ```json
 {
-  "date": "string",
-  "amount": "number",
-  "UserId": "number",
-  "MountainId": "number"
+  "id": "number",
+  "name": "string",
+  "mdpl": "number",
+  "region": "string",
+  "price": "number",
+  "imgUrl": "string",
+  "createdAt": "date",
+  "updatedAt": "date",
+  "Bookings": [
+    {
+      "id": "number",
+      "date": "string",
+      "amount": "number",
+      "UserId": "number",
+      "MountainId": "number",
+      "createdAt": "string",
+      "updatedAt": "string"
+    }
+  ]
 }
 ```
 
