@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Festival Musim Panen",
+        "description": "Festival yang biasa diadakan setahun sekali bagi masyarakat sekitar",
+        "price": 5000,
+        "UserId": 1
+    },
+    {
+        "title": "Konser Musik Kaki Gunung Merbabu",
+        "description": "Konser Musik DEWA 19 yang diadakan di kaki gunung merbabu",
+        "price": 250000,
+        "UserId": 2
+    }
+]

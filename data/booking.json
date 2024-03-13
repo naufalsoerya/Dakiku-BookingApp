@@ -1,0 +1,14 @@
+[
+    {
+        "date": "20 Maret 2024",
+        "amount": 1,
+        "UserId": 3,
+        "MountainId": 13
+    },
+    {
+        "date": "30 Maret 2024",
+        "amount": 1,
+        "UserId": 4,
+        "MountainId": 2
+    }
+]

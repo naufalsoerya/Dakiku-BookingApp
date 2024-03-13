@@ -1,0 +1,123 @@
+[
+  {
+    "name": "Gunung Merapi",
+    "mdpl": 2930,
+    "region": "Jawa Tengah",
+    "price": 30000,
+    "imgUrl": ""
+  },
+  {
+    "name": "Gunung Semeru",
+    "mdpl": 3676,
+    "region": "Jawa Timur",
+    "price": 35000
+  },
+  {
+    "name": "Gunung Slamet",
+    "mdpl": 3428,
+    "region": "Jawa Tengah",
+    "price": 25000
+  },
+  {
+    "name": "Gunung Lawu",
+    "mdpl": 3265,
+    "region": "Jawa Tengah",
+    "price": 20000
+  },
+  {
+    "name": "Gunung Ciremai",
+    "mdpl": 3078,
+    "region": "Jawa Barat",
+    "price": 15000
+  },
+  {
+    "name": "Gunung Raung",
+    "mdpl": 3332,
+    "region": "Jawa Timur",
+    "price": 22000
+  },
+  {
+    "name": "Gunung Gede",
+    "mdpl": 2958,
+    "region": "Jawa Barat",
+    "price": 30000
+  },
+  {
+    "name": "Gunung Sindoro",
+    "mdpl": 3153,
+    "region": "Jawa Tengah",
+    "price": 18000
+  },
+  {
+    "name": "Gunung Pangrango",
+    "mdpl": 3019,
+    "region": "Jawa Barat",
+    "price": 30000
+  },
+  {
+    "name": "Gunung Sumbing",
+    "mdpl": 3371,
+    "region": "Jawa Tengah",
+    "price": 25000
+  },
+  {
+    "name": "Gunung Buthak",
+    "mdpl": 3265,
+    "region": "Jawa Timur",
+    "price": 15000
+  },
+  {
+    "name": "Gunung Argopuro",
+    "mdpl": 3088,
+    "region": "Jawa Timur",
+    "price": 25000
+  },
+  {
+    "name": "Gunung Merbabu",
+    "mdpl": 3142,
+    "region": "Jawa Tengah",
+    "price": 35000
+  },
+  {
+    "name": "Gunung Wilis",
+    "mdpl": 2563,
+    "region": "Jawa Timur",
+    "price": 20000
+  },
+  {
+    "name": "Gunung Muria",
+    "mdpl": 1625,
+    "region": "Jawa Tengah",
+    "price": 15000
+  },
+  {
+    "name": "Gunung Kendeng",
+    "mdpl": 2591,
+    "region": "Jawa Tengah",
+    "price": 15000
+  },
+  {
+    "name": "Gunung Karang",
+    "mdpl": 1776,
+    "region": "Jawa Barat",
+    "price": 10000
+  },
+  {
+    "name": "Gunung Papandayan",
+    "mdpl": 2665,
+    "region": "Jawa Barat",
+    "price": 15000
+  },
+  {
+    "name": "Gunung Telomoyo",
+    "mdpl": 1894,
+    "region": "Jawa Tengah",
+    "price": 15000
+  },
+  {
+    "name": "Gunung Prau",
+    "mdpl": 2565,
+    "region": "Jawa Tengah",
+    "price": 30000
+  }
+]
