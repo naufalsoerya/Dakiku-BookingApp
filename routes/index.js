@@ -18,4 +18,8 @@ router.post('/booking/:id', authentication, Controller.postBooking)
 router.put('/booking/:id', authentication, authorization, Controller.putBooking)
 router.delete('/booking/:id', authentication, authorization, Controller.deleteBooking)
 
+// CRUD Event
+router.get('/event', authentication, Controller.getEvent)
+router.post('/event/:id', authentication, Controller.postEvent)
+
 module.exports = router

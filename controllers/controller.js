@@ -140,7 +140,33 @@ class Controller {
     }
   }
 
-  
+  // Controller event
+  static async getEvent(req, res, next) {
+    try {
+      const event = await Event.findAll();
+
+      res.status(200).json(event);
+    } catch(error) {
+      next(error)
+    }
+  }
+  static async postEvent(req, res, next) {
+    try {
+      const { title, description, price } = req.body;
+      const UserId = req.user.id;
+      const event = await Event.create({
+        title,
+        description,
+        price,
+        UserId,
+      });
+      if (!event) throw { name: "NotFound" };
+
+      res.status(201).json(event);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = Controller;
