@@ -17,6 +17,7 @@ router.get('/booking', authentication, Controller.getBooking)
 router.post('/booking/:id', authentication, Controller.postBooking)
 router.put('/booking/:id', authentication, authorization, Controller.putBooking)
 router.delete('/booking/:id', authentication, authorization, Controller.deleteBooking)
+router.patch('/payment', authentication, authorization, Controller.patchPayment)
 
 // CRUD Event
 router.get('/event', authentication, Controller.getEvent)

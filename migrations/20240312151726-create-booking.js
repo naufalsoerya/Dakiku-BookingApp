@@ -17,6 +17,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
+      isPay: {
+        type: Sequelize.BOOLEAN
+      },
       UserId: {
         allowNull: false,
         type: Sequelize.INTEGER,

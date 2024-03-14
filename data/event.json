@@ -1,14 +1,22 @@
 [
-    {
-        "title": "Festival Musim Panen",
-        "description": "Festival yang biasa diadakan setahun sekali bagi masyarakat sekitar",
-        "price": 5000,
-        "UserId": 1
-    },
-    {
-        "title": "Konser Musik Kaki Gunung Merbabu",
-        "description": "Konser Musik DEWA 19 yang diadakan di kaki gunung merbabu",
-        "price": 250000,
-        "UserId": 2
-    }
+  {
+    "title": "Festival Musim Panen",
+    "description": "Festival yang biasa diadakan setahun sekali bagi masyarakat sekitar di kaki gunung lawu",
+    "UserId": 1
+  },
+  {
+    "title": "Konser Musik Kaki Gunung Merbabu",
+    "description": "Konser Musik DEWA 19 yang diadakan di kaki gunung merbabu",
+    "UserId": 2
+  },
+  {
+    "title": "Upacara Keagamaan",
+    "description": "Upacara keagamaan yang diadakan setiap 6 bulan sekali oleh masyarakat kaki gunung merapi",
+    "UserId": 3
+  },
+  {
+    "title": "Festival Seribu Lampion",
+    "description": "Festival lampion yang diadakan setiap tahunnya di kaki gunung semeru",
+    "UserId": 4
+  }
 ]

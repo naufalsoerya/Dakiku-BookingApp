@@ -1,4 +1,5 @@
 const { Booking, Event, Mountain, User } = require("../models/index");
+const midtransClient = require("midtrans-client");
 
 class Controller {
   // Controller mountain
@@ -79,10 +80,10 @@ class Controller {
   // Controller booking
   static async getBooking(req, res, next) {
     try {
-      const booking = await Mountain.findAll({
+      const booking = await Booking.findAll({
         include: [
           {
-            model: Booking,
+            model: Mountain,
           },
         ],
       });
@@ -94,6 +95,9 @@ class Controller {
   }
   static async postBooking(req, res, next) {
     try {
+      const { id } = req.params;
+      const mountain = await Mountain.findByPk(id);
+
       const { date, amount, MountainId } = req.body;
       const UserId = req.user.id;
       const booking = await Booking.create({
@@ -104,7 +108,34 @@ class Controller {
       });
       if (!booking) throw { name: "NotFound" };
 
-      res.status(201).json(booking);
+      let snap = new midtransClient.Snap({
+        // Set to true if you want Production Environment (accept real transaction).
+        isProduction: false,
+        serverKey: process.env.MIDTRANS_SERVER_KEY,
+      });
+
+      let parameter = {
+        "transaction_details": {
+          "order_id":
+            "TRANCSACTION_" + booking.id + (process.env.NODE_ENV === 'production' ? '': '_dev' ),
+          "gross_amount": booking.amount * mountain.price,
+        },
+        "credit_card": {
+          "secure": true,
+        },
+        "customer_details": { 
+          "username": req.user.username,
+          "email": req.user.email,
+          "password": req.user.password,
+        },
+      };
+
+      const transaction = await snap.createTransaction(parameter)
+        // transaction token
+      let transactionToken = transaction.token;
+      console.log("transactionToken:", transactionToken);
+
+      res.json({ message: 'Booking Created', transactionToken });
     } catch (error) {
       next(error);
     }
@@ -139,6 +170,15 @@ class Controller {
       next(error);
     }
   }
+  static async patchPayment(req, res, next) {
+    try {
+      await Booking.update({ isPay: true }, { where: { id: req.user.id } });
+
+      res.status(200).json({ message: `Thank you for your payment` });
+    } catch (error) {
+      next(error);
+    }
+  }
 
   // Controller event
   static async getEvent(req, res, next) {
@@ -146,8 +186,8 @@ class Controller {
       const event = await Event.findAll();
 
       res.status(200).json(event);
-    } catch(error) {
-      next(error)
+    } catch (error) {
+      next(error);
     }
   }
   static async postEvent(req, res, next) {

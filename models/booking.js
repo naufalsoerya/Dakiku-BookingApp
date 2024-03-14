@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Booking.belongsTo(models.User, {
         foreignKey: 'UserId'
       });
-      Booking.belongsTo(models.User, {
+      Booking.belongsTo(models.Mountain, {
         foreignKey: 'MountainId'
       });
     }
@@ -44,6 +44,10 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+    isPay: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
     UserId: {
       allowNull: false,
       type: DataTypes.INTEGER,
@@ -67,7 +71,7 @@ module.exports = (sequelize, DataTypes) => {
           msg: "MountainId cannot be empty"
         }
       }
-    }
+    },
   }, {
     sequelize,
     modelName: 'Booking',
