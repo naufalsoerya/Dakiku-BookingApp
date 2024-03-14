@@ -2,7 +2,7 @@
     {
         "date": "20 Maret 2024",
         "amount": 1,
-        "isPay": false,
+        "isPay": true,
         "UserId": 3,
         "MountainId": 13
     },

@@ -1,4 +1,5 @@
-const { Booking, Event, Mountain, User } = require("../models/index");
+const { Axios, default: axios } = require("axios");
+const { Booking, Event, Mountain, Order } = require("../models/index");
 const midtransClient = require("midtrans-client");
 
 class Controller {
@@ -100,13 +101,6 @@ class Controller {
 
       const { date, amount, MountainId } = req.body;
       const UserId = req.user.id;
-      const booking = await Booking.create({
-        date,
-        amount,
-        MountainId,
-        UserId,
-      });
-      if (!booking) throw { name: "NotFound" };
 
       let snap = new midtransClient.Snap({
         // Set to true if you want Production Environment (accept real transaction).
@@ -114,28 +108,45 @@ class Controller {
         serverKey: process.env.MIDTRANS_SERVER_KEY,
       });
 
+      const booking = await Booking.create({
+        date,
+        amount,
+        MountainId,
+        UserId,
+      });
+
+      if (!booking) throw { name: "NotFound" };
+
       let parameter = {
-        "transaction_details": {
-          "order_id":
-            "TRANCSACTION_" + booking.id + (process.env.NODE_ENV === 'production' ? '': '_dev' ),
-          "gross_amount": booking.amount * mountain.price,
+        transaction_details: {
+          order_id:
+            "TRANSACTION_" +
+            booking.id +
+            (process.env.NODE_ENV === "production" ? "" : "_dev"),
+          gross_amount: booking.amount * mountain.price,
         },
-        "credit_card": {
-          "secure": true,
+        credit_card: {
+          secure: true,
         },
-        "customer_details": { 
-          "username": req.user.username,
-          "email": req.user.email,
-          "password": req.user.password,
+        customer_details: {
+          username: req.user.username,
+          email: req.user.email,
+          password: req.user.password,
         },
       };
 
-      const transaction = await snap.createTransaction(parameter)
-        // transaction token
+      const transaction = await snap.createTransaction(parameter);
       let transactionToken = transaction.token;
-      console.log("transactionToken:", transactionToken);
+      let orderId = parameter.transaction_details.order_id
 
-      res.json({ message: 'Booking Created', transactionToken });
+      console.log(transaction)
+
+      await Order.create({
+        UserId,
+        orderId
+      });
+
+      res.json({ message: "Booking Created", transactionToken, orderId });
     } catch (error) {
       next(error);
     }
@@ -172,9 +183,40 @@ class Controller {
   }
   static async patchPayment(req, res, next) {
     try {
-      await Booking.update({ isPay: true }, { where: { id: req.user.id } });
+      const { orderId } = req.body;
+      const {id} = req.params
 
-      res.status(200).json({ message: `Thank you for your payment` });
+      const order = await Order.findOne({where: {orderId}});
+      const booking = await Booking.findByPk(id);
+      console.log(booking)
+
+      if(!order) {
+        return res.status(404).json({message: 'Order not found'})
+      }
+
+      if(booking.isPay === true) {
+        return res.status(400).json({message: 'Order alreay paid'})
+      }
+
+      // console.log(order, '<<<<<<<<<<<<<<<<< ini order')
+
+      const serverKey = process.env.MIDTRANS_SERVER_KEY
+      const base64server = Buffer.from(serverKey + ':').toString('base64')
+      const response = await axios.get(`https://api.sandbox.midtrans.com/v2/${orderId}/status`, {
+        headers: {
+          Authorization: `Basic ${base64server}`
+        }
+      })
+      
+      // console.log(response.data.transaction_status, "<<<<<<<<<<<<<<")
+
+      if(response.data.transaction_status === 'settlement' && response.data.status_code === '200') {
+        await booking.update({isPay: true})
+        res.json({ message: `Thank you for your payment` });
+      } else {
+        res.status(400).json({ message: `Please check your payment detail` });
+      }
+
     } catch (error) {
       next(error);
     }
