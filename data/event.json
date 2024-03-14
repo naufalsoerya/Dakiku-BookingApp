@@ -2,21 +2,25 @@
   {
     "title": "Festival Musim Panen",
     "description": "Festival yang biasa diadakan setahun sekali bagi masyarakat sekitar di kaki gunung lawu",
+    "imgUrl": "https://i.pinimg.com/564x/9c/59/67/9c59672c1ba24e6d16ff094f1cc5264f.jpg",
     "UserId": 1
   },
   {
     "title": "Konser Musik Kaki Gunung Merbabu",
     "description": "Konser Musik DEWA 19 yang diadakan di kaki gunung merbabu",
+    "imgUrl": "https://i.pinimg.com/736x/95/d3/9e/95d39e4120cd22e02f373c043501661d.jpg",
     "UserId": 2
   },
   {
     "title": "Upacara Keagamaan",
     "description": "Upacara keagamaan yang diadakan setiap 6 bulan sekali oleh masyarakat kaki gunung merapi",
+    "imgUrl": "https://i.pinimg.com/564x/3d/b5/e7/3db5e717c319a0fb28ebd1a492d00068.jpg",
     "UserId": 3
   },
   {
     "title": "Festival Seribu Lampion",
     "description": "Festival lampion yang diadakan setiap tahunnya di kaki gunung semeru",
+    "imgUrl": "https://i.pinimg.com/564x/3d/f8/47/3df84706278256cf04befb4758ca7009.jpg",
     "UserId": 4
   }
 ]

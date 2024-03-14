@@ -10,7 +10,6 @@ router.use(authRoutes)
 // CRUD Mountain
 router.get('/mountain', authentication, Controller.getMountain)
 router.get('/mountain/:id', authentication, Controller.getMountainById)
-// router.patch('/mountain/:id', authentication, authorization, Controller)
 
 // CRUD Booking
 router.get('/booking', authentication, Controller.getBooking)
@@ -22,5 +21,6 @@ router.patch('/payment/:id', authentication, Controller.patchPayment)
 // CRUD Event
 router.get('/event', authentication, Controller.getEvent)
 router.post('/event/:id', authentication, Controller.postEvent)
+// router.patch('/event/:id', authentication, authorization, Controller)
 
 module.exports = router

@@ -1,6 +1,7 @@
 const { Axios, default: axios } = require("axios");
 const { Booking, Event, Mountain, Order } = require("../models/index");
 const midtransClient = require("midtrans-client");
+const ImageKit = require("imagekit");
 
 class Controller {
   // Controller mountain
@@ -247,6 +248,13 @@ class Controller {
       res.status(201).json(event);
     } catch (error) {
       next(error);
+    }
+  }
+  static async patchEvent(req, res, next) {
+    try {
+
+    } catch(error) {
+      next(error)
     }
   }
 }
