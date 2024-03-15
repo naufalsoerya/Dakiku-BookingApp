@@ -11,7 +11,6 @@ _Mountain_
 
 - **GET /mountain**
 - **GET /mountain/:id**
-- **PATCH /mountain/:id**
 
 _Booking_
 
@@ -23,6 +22,8 @@ _Booking_
 _Event_
 
 - **GET /event**
+- **POST /event/:id**
+- **PATCH /event/:id**
 
 ---
 
@@ -165,7 +166,6 @@ This endpoint retrieves mountain list
 
 - **Header:**
   - `Authentication`
-  - `Authorization`
 
 ## Response
 
@@ -205,7 +205,6 @@ This endpoint retrieves a specific mountain by ID.
 
 - **Header:**
   - `Authentication`
-  - `Authorization`
 
 ## Response
 
@@ -226,63 +225,6 @@ Response: (200 - OK)
 
 ---
 
-### PATCH /mountain/:id
-
-_Information:_
-
-- To update image mountain by id
-
-> ### **Request**
-
-- **Header:**
-  - `Authentication`
-  - `Authorization`
-  - `File`
-
-## Responses
-
-Response: (200 - OK)
-
-```json
-{
-  "message": "Image success to update"
-}
-```
-
-Response: (400 - Bad Request)
-
-```json
-{
-  "message": "File is required"
-}
-```
-
-Response: (401 - Unauthorized)
-
-```json
-{
-  "message": "Invalid Token"
-}
-```
-
-Response: (403 - Forbidden)
-
-```json
-{
-  "message": "Forbidden"
-}
-```
-
-Response: (404 - Not Found)
-
-```json
-{
-  "message": "Cuisine not found"
-}
-```
-
----
-
 # GET /booking
 
 _Information_
@@ -293,7 +235,6 @@ This endpoint retrieves all booking
 
 - **Header:**
   - `Authentication`
-  - `Authorization`
 
 ## Response
 
@@ -335,7 +276,6 @@ This endpoint post booking by id
 
 - **Header:**
   - `Authentication`
-  - `Authorization`
 
 ## Response
 
@@ -357,33 +297,6 @@ Response: (200 - OK)
 _Information_
 
 This endpoint update booking by id
-
-> ### **Request**
-
-- **Header:**
-  - `Authentication`
-  - `Authorization`
-
-## Response
-
-Response: (200 - OK)
-
-```json
-{
-  "date": "string",
-  "amount": "number",
-  "UserId": "number",
-  "MountainId": "number"
-}
-```
-
----
-
-# POST /booking/:id
-
-_Information_
-
-This endpoint post booking by id
 
 > ### **Request**
 
@@ -476,5 +389,88 @@ Response: (200 - OK)
   "description": "string",
   "price": "number",
   "UserId": "number"
+}
+```
+
+---
+
+### PATCH /event/:id
+
+_Information:_
+
+- To update image event by id
+
+> ### **Request**
+
+- **Header:**
+  - `Authentication`
+  - `Authorization`
+  - `File`
+
+## Responses
+
+Response: (200 - OK)
+
+```json
+{
+  "message": "Image success to update"
+}
+```
+
+Response: (400 - Bad Request)
+
+```json
+{
+  "message": "File is required"
+}
+```
+
+Response: (401 - Unauthorized)
+
+```json
+{
+  "message": "Invalid Token"
+}
+```
+
+Response: (403 - Forbidden)
+
+```json
+{
+  "message": "Forbidden"
+}
+```
+
+Response: (404 - Not Found)
+
+```json
+{
+  "message": "Cuisine not found"
+}
+```
+
+---
+
+# POST /event/:id
+
+_Information_
+
+This endpoint post event by id
+
+> ### **Request**
+
+- **Header:**
+  - `Authentication`
+
+## Response
+
+Response: (200 - OK)
+
+```json
+{
+  "title": "string",
+  "description": "string",
+  "price": "integer",
+  "UserId": "integer",
 }
 ```
