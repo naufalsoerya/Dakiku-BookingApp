@@ -1,4 +1,4 @@
-const { Booking } = require('../server/models');
+const { Booking } = require('../models');
 
 async function authorization(req, res, next) {
     try {
