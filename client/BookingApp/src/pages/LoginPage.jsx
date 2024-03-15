@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
-import { useGoogleLogin } from '@react-oauth/google'
+import { useGoogleLogin } from "@react-oauth/google";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ function LoginPage() {
         data: input,
       });
       localStorage.accessToken = data.token;
-      navigate("/cuisine");
+      navigate("/");
     } catch (error) {
       console.log(error);
       Swal.fire({
@@ -54,7 +54,7 @@ function LoginPage() {
         },
       });
 
-      localStorage.access_token = data.token;
+      localStorage.accessToken = data.token;
       localStorage.username = data.user.username;
 
       navigate("/");
@@ -70,9 +70,9 @@ function LoginPage() {
     }
   };
 
-const login = useGoogleLogin({
-  onSuccess: tokenResponse => handleCredentialRes(tokenResponse),
-});
+  const login = useGoogleLogin({
+    onSuccess: (tokenResponse) => handleCredentialRes(tokenResponse),
+  });
   return (
     <>
       <section className="flex flex-col md:flex-row h-screen items-center">
@@ -128,9 +128,9 @@ const login = useGoogleLogin({
             <div className="ml-20" id="google-login"></div>
 
             <button
-              type="button"
+              type="submit"
               onClick={() => {
-                login()
+                login();
               }}
               id="google-button"
               class="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300"

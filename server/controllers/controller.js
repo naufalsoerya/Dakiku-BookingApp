@@ -2,6 +2,7 @@ const { Axios, default: axios } = require("axios");
 const { Booking, Event, Mountain, Order } = require("../models/index");
 const midtransClient = require("midtrans-client");
 const ImageKit = require("imagekit");
+const { Op } = require("sequelize");
 
 class Controller {
   // Controller mountain
@@ -29,7 +30,7 @@ class Controller {
       }
 
       // pagination
-      let limit = 10;
+      let limit = 12;
       let pageNum = 1;
 
       if (page) {
