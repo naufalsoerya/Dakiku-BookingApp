@@ -40,6 +40,10 @@ module.exports = {
           key: 'id'
         }
       },
+      bookingId: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

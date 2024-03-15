@@ -4,13 +4,15 @@
         "amount": 1,
         "isPay": true,
         "UserId": 3,
-        "MountainId": 13
+        "MountainId": 13,
+        "bookingId": "TRANSACTION_1_dev"
     },
     {
         "date": "30 Maret 2024",
         "amount": 1,
         "isPay": true,
         "UserId": 4,
-        "MountainId": 2
+        "MountainId": 2,
+        "bookingId": "TRANSACTION_2_dev"
     }
 ]

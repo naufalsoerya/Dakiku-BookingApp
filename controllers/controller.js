@@ -138,16 +138,15 @@ class Controller {
 
       const transaction = await snap.createTransaction(parameter);
       let transactionToken = transaction.token;
-      let orderId = parameter.transaction_details.order_id
+      let bookingId = parameter.transaction_details.order_id;
 
-      console.log(transaction)
+      console.log(transaction);
 
-      await Order.create({
-        UserId,
-        orderId
+      await booking.update({
+        bookingId,
       });
 
-      res.json({ message: "Booking Created", transactionToken, orderId });
+      res.json({ message: "Booking Created", transactionToken, bookingId });
     } catch (error) {
       next(error);
     }
@@ -184,40 +183,38 @@ class Controller {
   }
   static async patchPayment(req, res, next) {
     try {
-      const { orderId } = req.body;
-      const {id} = req.params
+      const { bookingId } = req.body;
 
-      const order = await Order.findOne({where: {orderId}});
-      const booking = await Booking.findByPk(id);
-      console.log(booking)
+      const booking = await Booking.findOne({ where: { bookingId } });
 
-      if(!order) {
-        return res.status(404).json({message: 'Order not found'})
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
       }
 
-      if(booking.isPay === true) {
-        return res.status(400).json({message: 'Order alreay paid'})
+      if (booking.isPay === true) {
+        return res.status(400).json({ message: "Booking alreay paid" });
       }
 
-      // console.log(order, '<<<<<<<<<<<<<<<<< ini order')
-
-      const serverKey = process.env.MIDTRANS_SERVER_KEY
-      const base64server = Buffer.from(serverKey + ':').toString('base64')
-      const response = await axios.get(`https://api.sandbox.midtrans.com/v2/${orderId}/status`, {
-        headers: {
-          Authorization: `Basic ${base64server}`
+      const serverKey = process.env.MIDTRANS_SERVER_KEY;
+      const base64server = Buffer.from(serverKey + ":").toString("base64");
+      const response = await axios.get(
+        `https://api.sandbox.midtrans.com/v2/${bookingId}/status`,
+        {
+          headers: {
+            Authorization: `Basic ${base64server}`,
+          },
         }
-      })
-      
-      // console.log(response.data.transaction_status, "<<<<<<<<<<<<<<")
+      );
 
-      if(response.data.transaction_status === 'settlement' && response.data.status_code === '200') {
-        await booking.update({isPay: true})
+      if (
+        response.data.transaction_status === "settlement" &&
+        response.data.status_code === "200"
+      ) {
+        await booking.update({ isPay: true });
         res.json({ message: `Thank you for your payment` });
       } else {
         res.status(400).json({ message: `Please check your payment detail` });
       }
-
     } catch (error) {
       next(error);
     }
@@ -252,9 +249,33 @@ class Controller {
   }
   static async patchEvent(req, res, next) {
     try {
+      const {id} = req.params;
+      const event = await Event.findByPk(id);
 
-    } catch(error) {
-      next(error)
+      const base64Image = req.file.buffer.toString("base64");
+      const base64URL = `data:${req.file.mimetype};base64,${base64Image}`;
+
+      const imageKit = new ImageKit({
+        publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
+        privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
+        urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT,
+      });
+
+      let imageURL = await imageKit.upload({
+        file: base64URL, //required
+        fileName: req.file.originalname, //required
+        tags: ["tag1", "tag2"],
+      });
+
+      await event.update({
+        imgUrl: imageURL.url,
+      });
+
+      res
+        .status(200)
+        .json({ message: `image ${event.title} success to update`, event });
+    } catch (error) {
+      next(error);
     }
   }
 }
