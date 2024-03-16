@@ -101,8 +101,9 @@ class Controller {
       const { id } = req.params;
       const mountain = await Mountain.findByPk(id);
 
-      const { date, amount, MountainId } = req.body;
+      const { date, amount } = req.body;
       const UserId = req.user.id;
+      const MountainId = id
 
       let snap = new midtransClient.Snap({
         // Set to true if you want Production Environment (accept real transaction).
@@ -152,24 +153,6 @@ class Controller {
       next(error);
     }
   }
-  static async putBooking(req, res, next) {
-    try {
-      const { id } = req.params;
-      const booking = await Booking.findByPk(id);
-
-      if (!booking) throw { name: "NotFound" };
-
-      if (!req.body) {
-        throw { name: "SequelizeValidationError" };
-      }
-
-      await booking.update(req.body);
-
-      res.status(200).json(booking);
-    } catch (error) {
-      next(error);
-    }
-  }
   static async deleteBooking(req, res, next) {
     try {
       const { id } = req.params;
@@ -208,7 +191,7 @@ class Controller {
       );
 
       if (
-        response.data.transaction_status === "settlement" &&
+        response.data.transaction_status === "Settlement" &&
         response.data.status_code === "200"
       ) {
         await booking.update({ isPay: true });
@@ -244,6 +227,24 @@ class Controller {
       if (!event) throw { name: "NotFound" };
 
       res.status(201).json(event);
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async putEvent(req, res, next) {
+    try {
+      const { id } = req.params;
+      const event = await Event.findByPk(id);
+
+      if (!event) throw { name: "NotFound" };
+
+      if (!req.body) {
+        throw { name: "SequelizeValidationError" };
+      }
+
+      await event.update(req.body);
+
+      res.status(200).json(event);
     } catch (error) {
       next(error);
     }

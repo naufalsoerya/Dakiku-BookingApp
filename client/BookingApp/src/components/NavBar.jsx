@@ -11,7 +11,7 @@ function NavBar({ handleSearch }) {
           <Link className="_o6689fn" to={"/"}>
             <div className="md:block">
               <img
-                width={120}
+                width={105}
                 height={40}
                 fill="currentcolor"
                 style={{ display: "block" }}
@@ -28,7 +28,7 @@ function NavBar({ handleSearch }) {
             <div className="flex mr-4 items-center">
               <Link
                 className="inline-block py-2 px-3 hover:bg-blue-300 rounded-full"
-                to={"/"}
+                to={"/booking/list"}
               >
                 <div className="flex items-center relative cursor-pointer whitespace-nowrap">
                   Ticket Booking

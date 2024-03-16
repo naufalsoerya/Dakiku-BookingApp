@@ -8,6 +8,8 @@ import RegisterPage from "./pages/RegisterPage";
 import MainLayout from "./components/MainLayout";
 import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
+import BookingForm from "./pages/BookingForm";
+import BookingPage from "./pages/BookingPage";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
       {
         path: "/detail/:id",
         element: <DetailPage />
+      },
+      {
+        path: "/booking/form/:id",
+        element: <BookingForm />
+      },
+      {
+        path: "/booking/list",
+        element: <BookingPage />
       }
     ],
   },

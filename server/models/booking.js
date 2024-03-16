@@ -73,7 +73,6 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     bookingId: {
-      allowNull: false,
       type: DataTypes.STRING
     },
   }, {

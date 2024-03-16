@@ -41,7 +41,6 @@ module.exports = {
         }
       },
       bookingId: {
-        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
