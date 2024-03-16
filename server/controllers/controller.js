@@ -82,13 +82,12 @@ class Controller {
 
   // Controller booking
   static async getBooking(req, res, next) {
+    const UserId = req.user.id;
+
     try {
       const booking = await Booking.findAll({
-        include: [
-          {
-            model: Mountain,
-          },
-        ],
+        where: { UserId },
+        include: Mountain,
       });
 
       res.status(200).json(booking);
@@ -103,7 +102,7 @@ class Controller {
 
       const { date, amount } = req.body;
       const UserId = req.user.id;
-      const MountainId = id
+      const MountainId = id;
 
       let snap = new midtransClient.Snap({
         // Set to true if you want Production Environment (accept real transaction).
@@ -251,7 +250,7 @@ class Controller {
   }
   static async patchEvent(req, res, next) {
     try {
-      const {id} = req.params;
+      const { id } = req.params;
       const event = await Event.findByPk(id);
 
       const base64Image = req.file.buffer.toString("base64");

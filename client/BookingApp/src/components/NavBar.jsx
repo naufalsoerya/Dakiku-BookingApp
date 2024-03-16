@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 
-function NavBar({ handleSearch }) {
+function NavBar() {
   const navigate = useNavigate();
+
   return (
     <div className="z-999">
       {/* component */}
@@ -28,10 +29,10 @@ function NavBar({ handleSearch }) {
             <div className="flex mr-4 items-center">
               <Link
                 className="inline-block py-2 px-3 hover:bg-blue-300 rounded-full"
-                to={"/booking/list"}
+                to={`/booking/list`}
               >
                 <div className="flex items-center relative cursor-pointer whitespace-nowrap">
-                  Ticket Booking
+                  History Booking
                 </div>
               </Link>
               <div className="block relative">

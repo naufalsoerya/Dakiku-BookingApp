@@ -109,7 +109,7 @@ function BookingForm() {
                     <button
                       className="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none"
                       onClick={() => {
-                        navigate(`/booking/list`);
+                        navigate(`/`);
                       }}
                     >
                       <svg
@@ -131,7 +131,6 @@ function BookingForm() {
                     <button
                       className="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
                       type="submit"
-                      // onClick={handlePayment}
                     >
                       Create
                     </button>
