@@ -140,12 +140,9 @@ function LoginPage() {
             <hr className="my-6 border-gray-300 w-full" />
             <div className="ml-20" id="google-login"></div>
 
-            {/* <button
+            <button
               type="submit"
-              onClick={() => {
-                login();
-              }}
-              id="google-button"
+              id="buttonDiv"
               class="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300"
             >
               <div class="flex items-center justify-center">
@@ -184,11 +181,9 @@ function LoginPage() {
 
                 <span class="ml-4">Log in with Google</span>
               </div>
-            </button> */}
+            </button>
 
-            <div className="px-8 md:px-64 lg:px-52" id="buttonDiv"></div>
-
-            <p className="mt-8">
+            <p className="mt-7">
               Need an account?{" "}
               <Link
                 to={"/register"}

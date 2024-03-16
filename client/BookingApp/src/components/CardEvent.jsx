@@ -18,31 +18,53 @@ function CardEvent({ event }) {
             <p className="block font-sans text-base leading-relaxed text-blue-gray-900 antialiased font-bold">
               {event.title}
             </p>
-            <p
-              className="block leading-relaxed text-blue-gray-900 antialiased font-thin text-xs"
-            >
+            <p className="block leading-relaxed text-blue-gray-900 antialiased font-thin text-xs">
               {event.description}
             </p>
           </div>
         </div>
-        <div className="p-6 pt-0">
+        {/* <div className="p-6 pt-0">
           <button
-            className="block w-full select-none rounded-lg bg-blue-gray-900/10 mb-0 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            className="block w-full select-none rounded-lg bg-red-200 mb-0 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             onClick={() => {
               navigate(`/event/update/${event.id}`);
             }}
           >
             Update Event
           </button>
-        </div>
-        <div className="p-6 pt-0">
           <button
-            className="block w-full select-none rounded-lg bg-blue-gray-900/10 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            className="block w-full select-none rounded-lg bg-blue-200 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none mt-3"
             onClick={() => {
               navigate(`/event/upload/${event.id}`);
             }}
           >
             Update Photo
+          </button>
+        </div> */}
+        <div>
+          <button
+            className="block w-full group relative h-10 w-32 overflow-hidden rounded-lg bg-white text-lg shadow font-sans text-xs font-bold"
+            onClick={() => {
+              navigate(`/event/update/${event.id}`);
+            }}
+          >
+            <div className="absolute inset-0 w-3 bg-amber-400 transition-all duration-[250ms] ease-out group-hover:w-full" />
+            <span className="relative text-black group-hover:text-white">
+              Update Event
+            </span>
+          </button>
+        </div>
+        <div>
+          <button
+            className="block w-full group relative h-10 w-32 overflow-hidden rounded-lg bg-white text-lg shadow font-sans text-xs font-bold mt-2"
+            onClick={() => {
+              navigate(`/event/upload/${event.id}`);
+            }}
+          >
+            <div className="absolute inset-0 w-3 bg-blue-400 transition-all duration-[250ms] ease-out group-hover:w-full" />
+            <span className="relative text-black group-hover:text-white">
+              Upload Photo
+            </span>
           </button>
         </div>
       </div>
