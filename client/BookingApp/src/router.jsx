@@ -66,7 +66,7 @@ const router = createBrowserRouter([
         element: <EventForm />
       },
       {
-        path: "/event/update",
+        path: "/event/update/:id",
         element: <EventUpdate />
       },
       {

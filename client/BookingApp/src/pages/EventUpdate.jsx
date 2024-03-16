@@ -46,6 +46,32 @@ function EventUpdate() {
     }
   };
 
+  const fetchData = async () => {
+    try {
+      let config = {
+        method: "get",
+        url: `http://localhost:3000/event/${id}`,
+        headers: {
+          Authorization: "Bearer " + localStorage.accessToken,
+        },
+      };
+
+      let {data} = await axios(config)
+
+      setInput(data)
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        title: error.response.data.message,
+        icon: "error",
+      });
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [id]);
+
   return (
     <>
       <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">

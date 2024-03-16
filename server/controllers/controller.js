@@ -1,5 +1,5 @@
 const { Axios, default: axios } = require("axios");
-const { Booking, Event, Mountain, Order } = require("../models/index");
+const { Booking, Event, Mountain } = require("../models/index");
 const midtransClient = require("midtrans-client");
 const ImageKit = require("imagekit");
 const { Op } = require("sequelize");
@@ -207,6 +207,16 @@ class Controller {
   static async getEvent(req, res, next) {
     try {
       const event = await Event.findAll();
+
+      res.status(200).json(event);
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async getEventById(req, res, next) {
+    try {
+      const {id} = req.params
+      const event = await Event.findByPk(id);
 
       res.status(200).json(event);
     } catch (error) {
