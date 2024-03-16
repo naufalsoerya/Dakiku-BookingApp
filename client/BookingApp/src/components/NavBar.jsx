@@ -37,7 +37,7 @@ function NavBar() {
               </Link>
               <div className="block relative">
                 <Link
-                  to={"/"}
+                  to={"/event/list"}
                   className="inline-block py-2 px-3 hover:bg-gray-200 rounded-full relative "
                 >
                   <div className="flex items-center h-5">

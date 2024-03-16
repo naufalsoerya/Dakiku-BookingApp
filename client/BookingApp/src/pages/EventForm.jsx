@@ -3,13 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-function BookingForm() {
+function EventForm() {
   const [input, setInput] = useState({
-    date: "",
-    amount: null,
-    MountainId: null,
+    title: "",
+    description: "",
+    imgUrl: ""
   });
-  const { id } = useParams();
+
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
@@ -28,31 +28,14 @@ function BookingForm() {
     try {
       const { data } = await axios({
         method: "post",
-        url: `http://localhost:3000/booking/${id}`,
+        url: `http://localhost:3000/event`,
         headers: {
           Authorization: "Bearer " + localStorage.accessToken,
         },
         data: input,
       });
 
-      window.snap.pay(data.transactionToken, {
-        onSuccess: async function(result){
-          /* You may add your own implementation here */
-          console.log(result);
-          await axios({
-            method: "patch",
-            url: 'http://localhost:3000/payment',
-            data: {
-              bookingId: data.bookingId
-            },
-            headers: {
-              Authorization: "Bearer " + localStorage.accessToken,
-            },
-          })
-        }
-      });
-
-      navigate("/booking/list");
+      navigate("/event/list");
     } catch (error) {
       console.log(error);
       Swal.fire({
@@ -73,9 +56,9 @@ function BookingForm() {
                   i
                 </div>
                 <div className="block pl-2 font-semibold text-xl self-start text-gray-700">
-                  <h2 className="leading-relaxed">Create Booking</h2>
+                  <h2 className="leading-relaxed">Create Event</h2>
                   <p className="text-sm text-gray-500 font-normal leading-relaxed">
-                    Please enter your booking information.
+                    Please enter your event information.
                   </p>
                 </div>
               </div>
@@ -83,24 +66,35 @@ function BookingForm() {
                 <div className="divide-y divide-gray-200">
                   <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                     <div className="flex flex-col">
-                      <label className="leading-loose">Date</label>
+                      <label className="leading-loose">title</label>
                       <input
                         type="text"
                         className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                        placeholder="Input your hiking date"
-                        name="date"
-                        value={input.date}
+                        placeholder="Input your event title"
+                        name="title"
+                        value={input.title}
                         onChange={handleInputChange}
                       />
                     </div>
                     <div className="flex flex-col">
-                      <label className="leading-loose">Amount</label>
+                      <label className="leading-loose">description</label>
                       <input
-                        type="number"
+                        type="text"
                         className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                        placeholder="Input your amount of ticket"
-                        name="amount"
-                        value={input.amount}
+                        placeholder="Input your description of event"
+                        name="description"
+                        value={input.description}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <label className="leading-loose">Image Url</label>
+                      <input
+                        type="text"
+                        className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                        placeholder="Input your image of event"
+                        name="imgUrl"
+                        value={input.imgUrl}
                         onChange={handleInputChange}
                       />
                     </div>
@@ -109,7 +103,7 @@ function BookingForm() {
                     <button
                       className="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none"
                       onClick={() => {
-                        navigate(`/`);
+                        navigate(`/event/list`);
                       }}
                     >
                       <svg
@@ -145,4 +139,4 @@ function BookingForm() {
   );
 }
 
-export default BookingForm;
+export default EventForm;

@@ -55,7 +55,7 @@ function LoginPage() {
       });
 
       localStorage.accessToken = data.token;
-      localStorage.username = data.user.username;
+      // localStorage.username = data.user.username;
 
       navigate("/");
 
@@ -70,9 +70,22 @@ function LoginPage() {
     }
   };
 
-  const login = useGoogleLogin({
-    onSuccess: (tokenResponse) => handleCredentialRes(tokenResponse),
-  });
+  // const login = useGoogleLogin({
+  //   onSuccess: (tokenResponse) => handleCredentialRes(tokenResponse),
+  // });
+
+  useEffect(() => {
+    google.accounts.id.initialize({
+      client_id:
+        "155566357791-j3vna54ebf74gcqg3dhmt4o8u8csa7dp.apps.googleusercontent.com",
+      callback: handleCredentialRes,
+    });
+    google.accounts.id.renderButton(document.getElementById("buttonDiv"), {
+      theme: "outline",
+      size: "large",
+    });
+    // google.accounts.id.prompt(); // also display the One Tap dialog
+  }, []);
   return (
     <>
       <section className="flex flex-col md:flex-row h-screen items-center">
@@ -127,7 +140,7 @@ function LoginPage() {
             <hr className="my-6 border-gray-300 w-full" />
             <div className="ml-20" id="google-login"></div>
 
-            <button
+            {/* <button
               type="submit"
               onClick={() => {
                 login();
@@ -171,7 +184,9 @@ function LoginPage() {
 
                 <span class="ml-4">Log in with Google</span>
               </div>
-            </button>
+            </button> */}
+
+            <div className="px-8 md:px-64 lg:px-52" id="buttonDiv"></div>
 
             <p className="mt-8">
               Need an account?{" "}

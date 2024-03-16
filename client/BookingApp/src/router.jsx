@@ -10,6 +10,8 @@ import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
 import BookingForm from "./pages/BookingForm";
 import BookingPage from "./pages/BookingPage";
+import EventPage from "./pages/EventPage";
+import EventForm from "./pages/EventForm";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +54,14 @@ const router = createBrowserRouter([
       {
         path: "/booking/list",
         element: <BookingPage />
+      },
+      {
+        path: "/event/list",
+        element: <EventPage />
+      },
+      {
+        path: "/event/form",
+        element: <EventForm />
       }
     ],
   },

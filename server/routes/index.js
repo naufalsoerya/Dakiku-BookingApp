@@ -20,7 +20,7 @@ router.delete('/booking/:id', authentication, authorization, Controller.deleteBo
 
 // CRUD Event
 router.get('/event', authentication, Controller.getEvent)
-router.post('/event/:id', authentication, Controller.postEvent)
+router.post('/event', authentication, Controller.postEvent)
 router.put('/event/:id', authentication, authorization, Controller.putEvent)
 router.patch('/event/:id', authentication, authorization, upload.single("photo"), Controller.patchEvent)
 

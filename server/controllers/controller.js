@@ -215,12 +215,12 @@ class Controller {
   }
   static async postEvent(req, res, next) {
     try {
-      const { title, description, price } = req.body;
+      const { title, description, imgUrl } = req.body;
       const UserId = req.user.id;
       const event = await Event.create({
         title,
         description,
-        price,
+        imgUrl,
         UserId,
       });
       if (!event) throw { name: "NotFound" };
