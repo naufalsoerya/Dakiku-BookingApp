@@ -12,6 +12,8 @@ import BookingForm from "./pages/BookingForm";
 import BookingPage from "./pages/BookingPage";
 import EventPage from "./pages/EventPage";
 import EventForm from "./pages/EventForm";
+import EventUpdate from "./pages/EventUpdate";
+import EventUpload from "./pages/EventUpload";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +64,14 @@ const router = createBrowserRouter([
       {
         path: "/event/form",
         element: <EventForm />
+      },
+      {
+        path: "/event/update",
+        element: <EventUpdate />
+      },
+      {
+        path: "/event/upload/:id",
+        element: <EventUpload />
       }
     ],
   },
