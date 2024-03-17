@@ -23,24 +23,6 @@ function CardEvent({ event }) {
             </p>
           </div>
         </div>
-        {/* <div className="p-6 pt-0">
-          <button
-            className="block w-full select-none rounded-lg bg-red-200 mb-0 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-            onClick={() => {
-              navigate(`/event/update/${event.id}`);
-            }}
-          >
-            Update Event
-          </button>
-          <button
-            className="block w-full select-none rounded-lg bg-blue-200 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none mt-3"
-            onClick={() => {
-              navigate(`/event/upload/${event.id}`);
-            }}
-          >
-            Update Photo
-          </button>
-        </div> */}
         <div>
           <button
             className="block w-full group relative h-10 w-32 overflow-hidden rounded-lg bg-white text-lg shadow font-sans text-xs font-bold"
